@@ -1,0 +1,35 @@
+
+<% if user_signed_in? %>
+<strong><%= link_to current_user.email, edit_user_registration_path %></strong>
+<strong><%= link_to 'SignOut', destroy_user_session_path , method: :delete %></strong>
+<% else %>
+<strong><%= link_to 'SignUp', new_user_registration_path %></strong>
+<strong><%= link_to 'login', new_user_session_path %></strong>
+<% end %>
+<h1>Listing articles</h1>
+
+
+
+ 
+<%= link_to 'New article', new_article_path %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Destroy', article_path(article),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+
+    </tr>
+  <% end %>
+</table>
