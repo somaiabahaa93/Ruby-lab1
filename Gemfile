@@ -6,8 +6,15 @@ gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.6'
 # Use sqlite3 as the database for Active Record
+gem "active_model_serializers", "~> 0.8.0"
 gem 'sqlite3'
 # Use Puma as the app server
+# Use Json Web Token (JWT) for token based authentication
+gem 'jwt'
+gem 'cancancan'
+gem 'rack-cors'
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

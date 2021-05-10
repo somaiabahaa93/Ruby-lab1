@@ -1,8 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
+  # Article.accessible_by(current_ability)
+  load_and_authorize_resource
 
     def index
         @articles = Article.all
+        # render :json => @articles
       end
 
       def edit
@@ -11,6 +14,8 @@ class ArticlesController < ApplicationController
 
     def show
         @article = Article.find(params[:id])
+        # authorize! :read, @article
+        # render :json => @article ,:serializer => FancyPostSerializer
       end
 
     def new
@@ -28,6 +33,7 @@ class ArticlesController < ApplicationController
 
     def create
         @article = current_user.articles.new(article_params)
+        @article.user_id=current_user.id
         if @article.save
             redirect_to @article
           else
